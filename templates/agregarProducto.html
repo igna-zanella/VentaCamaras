@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}Agregar Producto{% endblock %}
+
+    {% block content %}
+
+    <div class="contenedor">
+        <div class="hh1">
+        <h1>ALTA DE PRODUCTO</h1>
+        </div>
+        <form action="" method="POST">
+            
+            <input class="input" type="number" name="id" placeholder="ID" min="1" max="10000" required /><br /><br />
+            <input class="input" type="text" name="nombre" placeholder="Modelo" maxlength="30"
+                required /><br /><br />
+            <!-- <input class="input" type="text" name="marca" placeholder="Marca" maxlength="30"
+                required /> -->
+            <select name="marca" id="opciones" required>
+                <option value="">Marca</option>
+                <option value="CANON">CANON</option>
+                <option value="SONY">SONY</option>
+                <option value="BLACKMAGIC">BLACKMAGIC</option>
+                <option value="PANASONIC">PANASONIC</option>
+                <option value="RED">RED</option>
+                <option value="NIKON">NIKON</option>
+            </select>
+            <br />
+            <!-- <input class="input" type="text" name="descripcion" placeholder="Descripción" maxlength="60"
+                required /><br /><br /> -->
+            <textarea class="input texto-area" name="descripcion" placeholder="Descripción" value=""  rows="10" cols="50"
+                maxlength="400" required></textarea><br><br>
+            <input class="input" type="text" name="precio" placeholder="Precio" maxlength="11"
+                required /><br /><br />
+            <input class="input" type="number" name="cantidad" placeholder="Cantidad" min="0" max="99"
+                /><br /><br />
+            <div class="btn-subir-img">
+                <label for="img" class="subir-img">IMAGEN 📷</label>
+            </div>
+            <input type="file" id="img" name="img" accept="image/*"
+            /><br /><br />
+            
+            <button class="btn-agregar" type="submit" onclick="agregado()">AGREGAR</button>
+            <button class="btn-agregar btn-borrar" type="reset">LIMPIAR</button>
+        </form>
+    </div>
+    <!-- <div class="boton-volver">
+        <a class="btn" href="/">VOLVER</a>
+    </div> -->
+    <script>
+        function agregado() {
+            alert("Producto agregado correctamente");
+        }
+    </script>
+    {% endblock %}

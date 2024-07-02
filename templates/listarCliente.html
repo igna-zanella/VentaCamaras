@@ -1,0 +1,67 @@
+
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+    {% block content %}
+
+    <section>
+        
+        <h1>&nbspCLIENTES</h1>
+
+        <div class="tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>DNI</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>CONTACTO</th>
+                        <th colspan="2">OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cli in clientes %}
+
+                    <tr>
+
+                        <td class="orden-tabla">
+                            <svg class="circ" height="10" width="10" xmlns="http://www.w3.org/2000/svg">
+                                <circle r="45" cx="50" cy="50" fill="red" />
+                            </svg>
+                        </td>
+                        <td title="DNI">{{cli.0}}</td>
+                        <td title="Nombre">{{cli.1}}</td>
+                        <td title="Apellido">{{cli.2}}</td>
+                        <td title="Contacto">{{cli.3}}</td>
+                        <td><a href="/obtenerCliente/{{cli.0}}"><img class="img-edit"
+                                    src="{{ url_for('static', filename='IMG/edit-1-svgrepo-com.svg') }}" title="EDITAR"
+                                    alt="editar usuario"></a></td>
+                        <td><img class="img-elim" src="{{ url_for('static', filename='IMG/delete-2-svgrepo-com.svg') }}"
+                                onclick="eliminar('{{cli.0}}')" title="ELIMINAR" id="{{cli.0}}" alt="eliminar cliente">
+                        </td>
+
+                        <script>
+                            function eliminar(dni) {
+                                let text = "¿Desea eliminar al cliente de forma permanente?";
+                                if (confirm(text) == true) {
+                                    console.log(dni)
+                                    window.location.href = "/eliminarCliente/" + dni;
+                                } else {
+                                    text = "";
+                                }
+                            }
+                        </script>
+
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        {% include 'bu.html' %}        
+    </section>
+
+    {% endblock %}

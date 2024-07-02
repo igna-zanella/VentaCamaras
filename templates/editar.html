@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/IMG/data-server.png')}}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/CSS/style.css')}}">
+    <title>Editar</title>
+</head>
+
+<body>
+    {% block content %}
+    <div class="nu">
+        <a href="/"><img class="plus" src="{{ url_for('static', filename='IMG/home.svg') }}"
+                title="Home" alt="home"></a>
+        </div>
+    <div class="contenedor">
+        <h1>ACTUALIZACIÓN DE DATOS</h1>
+
+        <form action="/actualizar/{{usuariohtml.0}}" method="POST" style="display: block;">
+            <label for="dni">DNI</label>
+            <input class="input type="text" name="dni" value="{{usuariohtml.0}}" placeholder="DNI"
+                maxlength="8" required readonly><br><br>
+            <label for="nombre">Nombre</label>
+            <input class="input type="text" name="nombre" value="{{usuariohtml.1}}" placeholder="Nombre"
+                maxlength="20" required><br><br>
+            <label for="apellido">Apellido</label>
+            <input class="input type="text" name="apellido" value="{{usuariohtml.2}}" placeholder="Apellido"
+                maxlength="20" required><br><br>
+            <!-- <input class="input type="text" name="ddireccion" value="Dirección actual {{usuariohtml.3}}" placeholder="Dirección" maxlength="5" readonly><br> -->
+            <label for="direccion">Dirección</label>
+            <select id="opciones" name="direccion">
+
+                {% for direcc in usuDire %}
+                    {% if direcc.3 == direcc.5 %}
+
+                    <option value="{{direcc.3}}">{{direcc.6}}{{" "}}{{direcc.7}}</option>
+        
+                    {% endif %}
+                {% endfor %}
+
+                {% for usu in dire %}
+
+                <option value="{{usu.0}}">{{usu.0}}{{") "}} {{usu.1}} {{usu.2}}</option>
+
+                {% endfor %}
+            </select> <br>
+
+            <!-- <input class="input type="text" name="eeducacion" value="Educación actual {{usuariohtml.4}}" placeholder="Educación" maxlength="5" readonly><br> -->
+            <label for="educacion">Educación</label>
+            <select id="opciones" name="educacion">
+
+                {% for educc in usuEdu %}
+                    {% if educc.1 == educc.2 %}
+
+                    <option value="{{educc.2}}">{{educc.4}}</option>
+                    <!-- <option value="{{usuariohtml.4}}">{{usuariohtml.4}}</option> -->
+        
+                    {% endif %}
+                {% endfor %}
+
+                {% for educ in edu %}
+
+                <option value="{{educ.2}}">{{educ.2}}{{") "}} {{educ.4}} {{"("}}{{educ.3}}{{")"}}</option>
+                <!-- <option value="{{educ.9}}">{{educ.9}}{{") "}} {{educ.10}} {{"("}}{{educ.11}}{{")"}}</option> -->
+
+                {% endfor %}
+            </select> <br>
+            <button class="btn-agregar" type="submit" onclick="mensajeActualizar()">ACTUALIZAR</button>
+        </form>
+        <script>
+            function mensajeActualizar() {
+                alert("Datos actualizados")
+            }
+        </script>
+    </div>
+    <!-- <div class="boton-volver">
+        <a class="btn" href="/">VOLVER</a>
+    </div> -->
+    
+    {% endblock %}
+
+</body>
+</html>

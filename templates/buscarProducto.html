@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block title %}Buscar{% endblock %}
+
+    {% block content %}
+
+    
+<h1>BÚSQUEDA DE PRODUCTOS</h1>
+
+    <form action="/buscarProducto" method="POST" style="margin: 30px auto;">
+    <label for="buscar">Ingrese la marca del producto</label>
+    <input type="search" id="buscar" name="marca">
+    <button class="btn-agregar" type="submit">BUSCAR</button>
+    <!-- <input type="submit" value="Buscar"> -->
+    </form>
+
+    <!-- <div class="boton-volver">
+        <a class="btn" href="/">VOLVER</a>
+    </div> -->
+    {% endblock %}

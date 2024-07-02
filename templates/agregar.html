@@ -1,0 +1,88 @@
+
+{% extends "base.html" %}
+
+{% block title %}Nueva Venta{% endblock %}
+
+    {% block content %}
+
+    <div class="contenedor">
+        <h1>ALTA DE USUARIOS</h1>
+        <form action="" method="POST">
+            <!-- faltaría agregar la ruta en action "/agregar" -->
+            <input class="input" type="text" name="codigo" placeholder="Código" maxlength="8" required /><br /><br />
+            <input class="input" type="date" name="fecha" id="dateid" min="2000-01-01" max="2030-12-31" required /><br /><br />
+            <!-- <input class="input" type="text" name="precioTotal" placeholder="Precio" maxlength="20"
+                /><br /><br /> -->
+            <select id="opciones" name="idProducto" required>
+                <option value="">Cámaras</option>
+
+                {% for pro in producto %}
+                    {% if pro.5 >=1 %}
+                    {% if pro.2 == "NIKON" %}
+                        <optgroup label="NIKON">
+                            <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}}  {{" $"}}{{pro.4}}</option>
+                        </optgroup>
+                    {% elif pro.2 == "CANON" %}
+                        <!-- <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}} {{pro.2}}</option> -->
+                        <optgroup label="CANON">
+                            <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}}  {{" $"}}{{pro.4}}</option>
+                        </optgroup>
+                    {% elif pro.2 == "SONY" %}
+                        <optgroup label="SONY">
+                            <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}}  {{" $"}}{{pro.4}}</option>
+                        </optgroup>
+                    {% elif pro.2 == "BLACKMAGIC" %}
+                        <optgroup label="BLACKMAGIC">
+                            <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}}  {{" $"}}{{pro.4}}</option>
+                        </optgroup>
+                    {% elif pro.2 == "RED" %}
+                        <optgroup label="RED">
+                            <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}}  {{" $"}}{{pro.4}}</option>
+                        </optgroup>
+                    {% elif pro.2 == "PANASONIC" %}
+                        <optgroup label="PANASONIC">
+                            <option value="{{pro.0}}">{{pro.0}}{{") "}} {{pro.1}}  {{" $"}}{{pro.4}}</option>
+                        </optgroup>
+                    {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br />
+            <select id="opciones" name="idCliente" required>
+                <option value="">Clientes</option>
+
+                {% for cli in cliente %}
+
+                <option value="{{cli.0}}">
+                    {{cli.1}}{{" "}}{{" "}}{{cli.2}} 
+                </option>
+
+                {% endfor %}
+            </select>
+            <br />
+            <!-- <input class="input" type="text" id="educacion" name="educacion" placeholder="Educación" maxlength="5" required><br><br> -->
+            <button class="btn-agregar" type="submit">AGREGAR</button>
+            <button class="btn-agregar btn-borrar" type="reset">LIMPIAR</button>
+        </form>
+    </div>
+    <!-- <div class="boton-volver">
+        <a class="btn" href="/">VOLVER</a>
+    </div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function myFunction() {
+            alert("Hello\nHow are you?");
+        }
+        
+            var date = new Date();
+
+var day = ("0" + date.getDate()).slice(-2);
+var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+var today = date.getFullYear() + "-" + (month) + "-" + (day);
+
+$('#dateid').val(today);
+    
+
+    </script>
+    {% endblock %}

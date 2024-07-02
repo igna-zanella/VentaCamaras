@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+
+{% block title %}Productos{% endblock %}
+
+    {% block content %}
+
+
+        
+        <h1>&nbspPRODUCTOS</h1>
+
+        <div class="cards">
+        {% for prod in productos %}
+            <div class="card">
+                <!-- <img src="../static/IMG/nodisponible.png" alt="" width="100px" height="auto"> -->
+                {% if prod.6 == '' %}
+                <img src="../static/IMG_PRODUCTOS/nodisponible.png" alt="Cámara Reflex" width="100px" height="auto">
+                {% else %}
+                <img src="../static/IMG_PRODUCTOS/{{prod.6}}" alt="Cámara Reflex" width="100px" height="auto">
+                {% endif %}
+                <div class="content">
+                    <h2>{{prod.2}}</h2>
+                    <h3 class="subtitulo">{{prod.1}}</h3>
+                    <P>{{prod.3}}</P>
+                    <br>
+                    <div class="precio-stock">
+                    <h3>&nbsp&nbsp{{"U$S"}}&nbsp{{prod.4}}</h3>
+                    {% if prod.5 == 1 %}
+                    <h4>{{prod.5}} unidad en stock</h4>
+                    {% elif prod.5 == 0 %}
+                    <h4 style="background-color: red;">SIN STOCK</h4>
+                    <!-- <h4 style="background-color: red;">{{prod.5}} unidades en stock</h4> -->
+                    {% else %}
+                    <h4>{{prod.5}} unidades en stock</h4>
+                    {% endif %}
+                </div>
+                </div>
+                <div class="pie">
+                    <a href="/obtenerProducto/{{prod.0}}"><img class="img-edit"
+                        src="{{ url_for('static', filename='IMG/edit-1-svgrepo-com.svg') }}" title="EDITAR"
+                        alt="editar usuario"></a>
+                        <a><img class="img-elim" src="{{ url_for('static', filename='IMG/delete-2-svgrepo-com.svg') }}"
+                        onclick="eliminar('{{prod.0}}')" title="ELIMINAR" id="{{prod.0}}" alt="eliminar cliente"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+        <script>
+            function eliminar(id) {
+                let text = "¿Desea eliminar al producto de forma permanente?";
+                if (confirm(text) == true) {
+                    console.log(id)
+                    window.location.href = "/eliminarProducto/" + id;
+                } else {
+                    text = "";
+                }
+            }
+        </script>            
+    </section>
+
+    {% endblock %}

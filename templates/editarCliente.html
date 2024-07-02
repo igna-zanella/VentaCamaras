@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block title %}ACTUALIZAR PRODUCTOS{% endblock %}
+
+    {% block content %}
+
+    <div class="contenedor">
+        <h1>ACTUALIZACIÓN DE DATOS</h1>
+
+        <form action="/actualizarCliente/{{clientes.0}}" method="POST" style="display: block;">
+            <label for="id">dni</label>
+            <input class="input" type="text" name="dni" value="{{clientes.0}}" placeholder="DNI"
+                maxlength="8" required readonly><br><br>
+            <label for="nombre">Nombre</label>
+            <input class="input" type="text" name="nombre" value="{{clientes.1}}" placeholder="Nombre"
+                maxlength="32" required><br><br>
+            <label for="apellido">Apellido</label>
+            <input class="input" type="text" name="apellido" value="{{clientes.2}}" placeholder="apellido"
+                maxlength="32" required><br><br>
+            <label for="contacto">Contacto</label>
+            <input class="input" type="text" name="contacto" value="{{clientes.3}}" placeholder="contacto"
+                maxlength="15" required><br><br>
+            
+            <button class="btn-agregar" type="submit" onclick="mensajeActualizar()">ACTUALIZAR</button>
+        </form>
+        <script>
+            function mensajeActualizar() {
+                alert("Datos actualizados")
+            }
+        </script>
+    </div>
+    <!-- <div class="boton-volver">
+        <a class="btn" href="/">VOLVER</a>
+    </div> -->
+    
+    {% endblock %}

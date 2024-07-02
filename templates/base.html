@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/IMG/data-server.png')}}" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/CSS/style.css')}}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>{% block title %} {% endblock %}</title>
+    
+    <!-- {% if title %}
+        <title>Ventas - {{title}}</title>
+    {%else%}
+        <title>Home</title>
+    {%endif%} -->
+
+</head>
+<body>
+
+    <header>
+        <nav class="topnav" id="myTopnav">
+            <div class="nu">
+            <a href="/"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/home.svg') }}"
+                    title="HOME" alt="home"></a>
+            </div>
+            <div class="nu">
+            <a href="/buscar"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/search.svg') }}"
+                    title="BUSCAR" alt="buscar"></a>
+            </div>
+            <div class="nu">
+            <a href="/agregar"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/plus.svg') }}"
+                    title="AGREGAR VENTA" alt="agregar venta"></a>
+            </div>
+            <div class="nu">
+            <!-- <a href="/listarcli"><img class="plus" src="{{ url_for('static', filename='IMG/plus.svg') }}"
+                    title="AGREGAR USUARIO" alt="agregar usuario"></a> -->
+                    <a href="/listarCliente"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/user.png') }}" title="CLIENTES" alt="clientes"/></a>
+                    <!-- <a href="/listarCliente"><img width="64" height="64" class="plus" src="https://img.icons8.com/office/64/000000/user.png" title="CLIENTES" alt="clientes"/></a> -->
+            </div>
+            <div class="nu">
+            <a href="/agregarCliente"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/user_add.png') }}" title="AGREGAR CLIENTES" alt="agregar clientes"/></a>
+            <!-- <a href="/agregarCliente"><img width="64" height="64" class="plus" src="https://img.icons8.com/office/64/000000/user_add.png" title="AGREGAR CLIENTES" alt="agregar clientes"/></a> -->
+            </div>
+            <div class="nu">
+            <a href="/buscarCliente"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/user_search.png') }}" title="BUSCAR CLIENTES" alt="buscar clientes"/></a>
+            <!-- <a href="/agregarCliente"><img width="64" height="64" class="plus" src="https://img.icons8.com/office/64/000000/user_add.png" title="AGREGAR CLIENTES" alt="agregar clientes"/></a> -->
+            </div>
+            <div class="nu">
+            <a href="/listarProducto"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/product.png') }}"  title="PRODUCTOS" alt="productos"/></a>
+            </div>
+            <div class="nu">
+                <a href="/agregarProducto"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/product_add.png') }}"
+                        title="AGREGAR PRODUCTO" alt="agregar producto"></a>
+            </div>
+            <div class="nu">
+                <a href="/buscarProducto"><img width="64" height="64" class="plus" src="{{ url_for('static', filename='IMG/product_search.png') }}"
+                        title="BUSCAR PRODUCTO" alt="agregar producto"></a>
+            </div>
+        </nav>
+    </header>
+
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    
+    <footer>
+        <div>
+            <h2>Mapa del sitio</h2>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/agregar">Agregar Venta</a></li>
+                <li><a href="/listarCliente">Listar Clientes</a></li>
+                <li><a href="/agregarCliente">Agregar Cliente</a></li>
+                <li><a href="/buscarCliente">Buscar Cliente</a></li>
+                <li><a href="/listarProducto">Listar Productos</a></li>
+                <li><a href="/agregarProducto">Agregar Producto</a></li>
+                <li><a href="/buscarProducto">Buscar Producto</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Nuestra Empresa</h2>
+            <ul>
+                <li><a href="https://www.google.com" target="_blank">Historial</a></li>
+                <li><a href="https://www.google.com" target="_blank">Proveedores</a></li>
+                <li><a href="https://www.google.com" target="_blank">Deudores</a></li>
+            </ul>
+        </div>
+
+        <div class="redes">
+            <h2>Redes</h2>
+            <!-- <ul> -->
+                <div class="sociales">
+                <a href="https://www.facebook.com/" class="social-icon"
+                    target="_blank"><img src="{{ url_for('static', filename='IMG/facebook_logo.png') }}" alt="Facebook link" /></a>
+                <a href="https://www.instagram.com/" class="social-icon" target="_blank"><img
+                        src="{{ url_for('static', filename='IMG/instagram_logo.webp') }}" alt="Instagram link" /></a>
+                <a href="https://www.youtube.com/"
+                    class="social-icon" target="_blank"><img src="{{ url_for('static', filename='IMG/yt_logo.png') }}" alt="Twitter link" /></a>
+                    <!-- <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank">Linkedin</a></li>
+                        <li><a href="https://www.youtube.com" target="_blank">Youtube</a></li> -->
+                    <!-- </ul> -->
+                </div>
+            </div>
+            <p class="copy">Ignacio Zanella &copy; 2024</p>
+    </footer>
+
+</body>
+</html>
