@@ -14,9 +14,9 @@
             <div class="card">
                 <!-- <img src="../static/IMG/nodisponible.png" alt="" width="100px" height="auto"> -->
                 {% if prod.6 == '' %}
-                <img src="../static/IMG_PRODUCTOS/nodisponible.png" alt="Cámara Reflex" width="100px" height="auto">
+                <img src="../static/IMG_PRODUCTOS/nodisponible.png" alt="Cámara Reflex" width="100px" height="auto" title="{{prod.1}}">
                 {% else %}
-                <img src="../static/IMG_PRODUCTOS/{{prod.6}}" alt="Cámara Reflex" width="100px" height="auto">
+                <img src="../static/IMG_PRODUCTOS/{{prod.6}}" alt="Cámara Reflex" width="100px" height="auto" title="{{prod.1}}">
                 {% endif %}
                 <div class="content">
                     <h2>{{prod.2}}</h2>

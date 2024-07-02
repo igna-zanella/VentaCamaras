@@ -48,7 +48,7 @@ def agregar():
         cur.connection.commit()
         
         curCant = mysql.connection.cursor()
-        cantidad = curCant.execute('UPDATE producto SET cantidad = cantidad - 1 WHERE id = %s', (idProducto))
+        curCant.execute('UPDATE producto SET cantidad = cantidad - 1 WHERE id = %s', (idProducto))
         curCant.connection.commit()
         
         return  redirect(url_for('listar'))
