@@ -82,6 +82,74 @@ def buscar():
 
         return render_template('listar.html', datos = datos)
 
+
+
+# @app.route('/obtener/<id>')
+# def obtener(id):
+#         curProducto= mysql.connection.cursor()
+#         curProducto.execute('SELECT * FROM producto')
+#         # curEducacion.execute('SELECT usuario.dni, usuario.educacion, educacion.id_educacion, educacion.educacionMax, educacion.titulo FROM usuario, educacion WHERE dni = %s' % (id))
+#         producto= curProducto.fetchall()
+        
+#         curCliente= mysql.connection.cursor()
+#         # cuDireccion.execute('SELECT * FROM dirClienteeccion')
+#         curCliente.execute('SELECT * FROM cliente')
+#         cliente= curCliente.fetchall()
+        
+#         cur = mysql.connection.cursor()
+#         cur.execute('SELECT * FROM venta WHERE codigo = %s' % (id))
+#         # cur.execute('SELECT * FROM usuario, direccion WHERE dni = %s' % (id))
+#         venta = cur.fetchall()
+
+#         # usuario.dni[0], usuario.nombre[1], usuario.apellido[2], usuario.direccion[3], usuario.educacion[4], direccion.id[5], direccion.calle[6], direccion.numero[7], direccion.codigoP[8] 
+        
+#         return render_template('editar.html', usuariohtml = venta[0], dire = cliente, edu = producto, usuDire = venta, usuEdu = producto, precio = producto[4])
+
+
+@app.route('/obtener/<id>')
+def obtener(id):
+        curCliente= mysql.connection.cursor()
+        curCliente.execute('SELECT venta.codigo, venta.idCliente, cliente.dni, cliente.nombre, cliente.apellido FROM venta, cliente WHERE codigo = %s' % (id))
+        cliente = curCliente.fetchall()
+        
+        # educacion = cliente 
+        # direccion = producto
+        
+        curProducto= mysql.connection.cursor()
+        curProducto.execute('SELECT * FROM producto')
+        producto = curProducto.fetchall()
+        
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT * FROM venta, producto WHERE codigo = %s' % (id))
+        venta = cur.fetchall()
+
+        # usuario.dni[0], usuario.nombre[1], usuario.apellido[2], usuario.direccion[3], usuario.educacion[4], direccion.id[5], direccion.calle[6], direccion.numero[7], direccion.codigoP[8] 
+        
+        return render_template('editar.html', ventaHtml = venta[0], productos = producto, clientes = cliente, ventaProd = venta, ventaCli = cliente, precio = producto[4])
+    
+@app.route('/actualizar/<codigo>', methods=['POST'])
+def actualizar(codigo):
+    if request.method == 'POST':
+        fecha = request.form['fecha']
+        # apellido = request.form['apellido']
+        precio = request.form['precio']
+        idProducto = request.form['idProducto']
+        idCliente = request.form['idCliente']
+        
+        
+        curProducto= mysql.connection.cursor()
+        curProducto.execute('''UPDATE producto SET precio = %s WHERE id = %s''', (precio, idProducto))
+        curProducto.connection.commit()
+        
+        cur = mysql.connection.cursor()
+        cur.execute('''UPDATE venta SET fecha = %s, 
+                    idProducto = %s, 
+                    idCliente = %s WHERE codigo = %s''', (fecha, idProducto, idCliente, codigo))
+        cur.connection.commit()
+
+        return  redirect(url_for('listar'))
+
+
 # ------------------------ FIN VENTAS --------------------------------------
 
 # ------------------------ PRODUCTOS ---------------------------------------
@@ -269,21 +337,21 @@ def actualizarCliente(dni):
 # ------------------------ FIN CLIENTE -------------------------------------
 
 
-@app.route('/obtener/<id>')
-def obtener(id):
-        curProducto= mysql.connection.cursor()
-        curProducto.execute('SELECT * FROM producto')
-        producto = curProducto.fetchall()
+# @app.route('/obtener/<id>')
+# def obtener(id):
+#         curProducto= mysql.connection.cursor()
+#         curProducto.execute('SELECT * FROM producto')
+#         producto = curProducto.fetchall()
         
-        curCliente= mysql.connection.cursor()
-        curCliente.execute('SELECT * FROM cliente')
-        cliente = curCliente.fetchall()
+#         curCliente= mysql.connection.cursor()
+#         curCliente.execute('SELECT * FROM cliente')
+#         cliente = curCliente.fetchall()
         
-        cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM venta, producto direccion WHERE codigo = %s' % (id))
-        venta = cur.fetchall()
+#         cur = mysql.connection.cursor()
+#         cur.execute('SELECT * FROM venta, producto direccion WHERE codigo = %s' % (id))
+#         venta = cur.fetchall()
         
-        return render_template('editar.html', ventahtml = venta[0], clientes = cliente, productos = producto, venCli = venta, venProd = producto)
+#         return render_template('editar.html', ventahtml = venta[0], clientes = cliente, productos = producto, venCli = venta, venProd = producto)
 
 
 def error404(error):
